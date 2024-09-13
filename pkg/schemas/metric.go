@@ -141,7 +141,7 @@ func (m Metric) Key() MetricKey {
 	switch m.Kind {
 	case MetricKindCoverage, MetricKindDurationSeconds, MetricKindID, MetricKindQueuedDurationSeconds, MetricKindRunCount, MetricKindStatus, MetricKindTimestamp, MetricKindTestReportTotalCount, MetricKindTestReportErrorCount, MetricKindTestReportFailedCount, MetricKindTestReportSkippedCount, MetricKindTestReportSuccessCount, MetricKindTestReportTotalTime:
 		key += fmt.Sprintf("%v", []string{
-			m.Labels["project"],
+			m.Labels["git_project"],
 			m.Labels["kind"],
 			m.Labels["ref"],
 			m.Labels["source"],
@@ -149,7 +149,7 @@ func (m Metric) Key() MetricKey {
 
 	case MetricKindJobArtifactSizeBytes, MetricKindJobDurationSeconds, MetricKindJobID, MetricKindJobQueuedDurationSeconds, MetricKindJobRunCount, MetricKindJobStatus, MetricKindJobTimestamp:
 		key += fmt.Sprintf("%v", []string{
-			m.Labels["project"],
+			m.Labels["git_project"],
 			m.Labels["kind"],
 			m.Labels["ref"],
 			m.Labels["stage"],
@@ -160,13 +160,13 @@ func (m Metric) Key() MetricKey {
 
 	case MetricKindEnvironmentBehindCommitsCount, MetricKindEnvironmentBehindDurationSeconds, MetricKindEnvironmentDeploymentCount, MetricKindEnvironmentDeploymentDurationSeconds, MetricKindEnvironmentDeploymentJobID, MetricKindEnvironmentDeploymentStatus, MetricKindEnvironmentDeploymentTimestamp, MetricKindEnvironmentInformation:
 		key += fmt.Sprintf("%v", []string{
-			m.Labels["project"],
+			m.Labels["git_project"],
 			m.Labels["environment"],
 		})
 
 	case MetricKindTestSuiteErrorCount, MetricKindTestSuiteFailedCount, MetricKindTestSuiteSkippedCount, MetricKindTestSuiteSuccessCount, MetricKindTestSuiteTotalCount, MetricKindTestSuiteTotalTime:
 		key += fmt.Sprintf("%v", []string{
-			m.Labels["project"],
+			m.Labels["git_project"],
 			m.Labels["kind"],
 			m.Labels["ref"],
 			m.Labels["test_suite_name"],
@@ -174,7 +174,7 @@ func (m Metric) Key() MetricKey {
 
 	case MetricKindTestCaseExecutionTime, MetricKindTestCaseStatus:
 		key += fmt.Sprintf("%v", []string{
-			m.Labels["project"],
+			m.Labels["git_project"],
 			m.Labels["kind"],
 			m.Labels["ref"],
 			m.Labels["test_suite_name"],
