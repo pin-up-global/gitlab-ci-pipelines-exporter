@@ -38,7 +38,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ${{ secrets.DOCKER_HUB_USERNAME }}/your-repo-name
+          images: ${{ secrets.DOCKER_HUB_USERNAME }}/gitlab-ci-pipelines-exporter
           tags: |
             type=ref,event=tag
             type=sha,prefix=commit-
