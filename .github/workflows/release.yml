@@ -31,45 +31,32 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: docker.io
-          username: ${{ github.repository_owner }}
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
-      - name: ghcr.io login
-        uses: docker/login-action@v2
+      - name: Build and push Docker image
+        id: push
+        uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
         with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GH_PAT }}
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
 
-      - name: quay.io Login
-        uses: docker/login-action@v2
+      - name: Extract metadata for Docker
+        id: meta
+        uses: docker/metadata-action@v4
         with:
-          registry: quay.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.QUAY_TOKEN }}
+          images: ${{ secrets.DOCKER_HUB_USERNAME }}/your-repo-name
+          tags: |
+            type=ref,event=tag
+            type=sha,prefix=commit-
 
-      - name: Snapcraft config
-        uses: samuelmeuli/action-snapcraft@v2
-
-      - name: Set up Go
-        uses: actions/setup-go@v4
+      - name: Build and push Docker image
+        id: push
+        uses: docker/build-push-action@v4
         with:
-          go-version: '1.22'
-
-      - name: Import GPG key
-        uses: crazy-max/ghaction-import-gpg@v5
-        with:
-          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-          passphrase: ${{ secrets.GPG_PASSPHRASE }}
-
-      - name: Install goreleaser
-        uses: goreleaser/goreleaser-action@v4
-        with:
-          version: v1.24.0
-          install-only: true
-
-      - name: Run goreleaser
-        run: make ${{ github.ref == 'refs/heads/main' && 'pre' || '' }}release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_TOKEN }}
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
