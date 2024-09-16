@@ -1,5 +1,9 @@
 # 🦊 gitlab-ci-pipelines-exporter
 
+- Changed default labels from "project" to "git_project" in collectors.go.
+- Updated default labels in metric.go to reflect the change.
+- Modified environment labels from "project" to "git_project" in schemas/metric.go.
+
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/mvisonneau/gitlab-ci-pipelines-exporter)](https://pkg.go.dev/mod/github.com/mvisonneau/gitlab-ci-pipelines-exporter)
 [![Go Report Card](https://goreportcard.com/badge/github.com/mvisonneau/gitlab-ci-pipelines-exporter)](https://goreportcard.com/report/github.com/mvisonneau/gitlab-ci-pipelines-exporter)
 [![Docker Pulls](https://img.shields.io/docker/pulls/mvisonneau/gitlab-ci-pipelines-exporter.svg)](https://hub.docker.com/r/mvisonneau/gitlab-ci-pipelines-exporter/)
