@@ -278,7 +278,7 @@ func (c *Controller) GarbageCollectMetrics(ctx context.Context) error {
 	for k, m := range storedMetrics {
 		// In order to save some memory space we chose to have to recompose
 		// the Ref the metric belongs to
-		metricLabelProject, metricLabelProjectExists := m.Labels["project"]
+		metricLabelProject, metricLabelProjectExists := m.Labels["git_project"]
 		metricLabelRef, metricLabelRefExists := m.Labels["ref"]
 		metricLabelEnvironment, metricLabelEnvironmentExists := m.Labels["environment"]
 
