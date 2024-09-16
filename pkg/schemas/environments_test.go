@@ -29,7 +29,7 @@ func TestEnvironmentDefaultLabelsValues(t *testing.T) {
 	}
 
 	expectedValue := map[string]string{
-		"project":     "foo",
+		"git_project": "foo",
 		"environment": "bar",
 	}
 
@@ -52,7 +52,7 @@ func TestEnvironmentInformationLabelsValues(t *testing.T) {
 	}
 
 	expectedValue := map[string]string{
-		"project":                 "foo",
+		"git_project":             "foo",
 		"environment":             "bar",
 		"environment_id":          "10",
 		"external_url":            "http://genial",

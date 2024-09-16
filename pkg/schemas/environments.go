@@ -36,7 +36,7 @@ func (envs Environments) Count() int {
 // DefaultLabelsValues ..
 func (e Environment) DefaultLabelsValues() map[string]string {
 	return map[string]string{
-		"project":     e.ProjectName,
+		"git_project": e.ProjectName,
 		"environment": e.Name,
 	}
 }

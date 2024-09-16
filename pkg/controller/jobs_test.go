@@ -115,7 +115,7 @@ func TestProcessJobMetrics(t *testing.T) {
 	// Check if all the metrics exist
 	metrics, _ := c.Store.Metrics(ctx)
 	labels := map[string]string{
-		"project":            ref.Project.Name,
+		"git_project":        ref.Project.Name,
 		"topics":             ref.Project.Topics,
 		"ref":                ref.Name,
 		"kind":               string(ref.Kind),

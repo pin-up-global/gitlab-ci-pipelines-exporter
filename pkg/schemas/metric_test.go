@@ -18,7 +18,7 @@ func TestMetricKey(t *testing.T) {
 	assert.Equal(t, MetricKey("77312310"), Metric{
 		Kind: MetricKindEnvironmentInformation,
 		Labels: prometheus.Labels{
-			"project":     "foo",
+			"git_project": "foo",
 			"environment": "bar",
 			"foo":         "bar",
 		},
